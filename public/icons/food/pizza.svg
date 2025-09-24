@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="crust" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d8a15a"/>
+      <stop offset="1" stop-color="#b07a3a"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="none">
+    <path d="M4 8 L56 8 L32 56 Z" fill="url(#crust)"/>
+    <path d="M10 12 L50 12 L32 46 Z" fill="#f7c873"/>
+    <circle cx="24" cy="26" r="3" fill="#d84a4a"/>
+    <circle cx="38" cy="22" r="3" fill="#d84a4a"/>
+    <circle cx="34" cy="34" r="3" fill="#d84a4a"/>
+  </g>
+</svg>
+
+
