@@ -85,6 +85,47 @@ function Splash({ onDone }) {
     const t = setTimeout(onDone, 2200);
     return () => clearTimeout(t);
   }, [onDone]);
+  // Play a short chime when the splash screen first appears.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const AudioCtor = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtor) return;
+
+    const ctx = new AudioCtor();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    const start = ctx.currentTime;
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(520, start);
+    osc.frequency.exponentialRampToValueAtTime(880, start + 0.22);
+
+    gain.gain.setValueAtTime(0.0001, start);
+    gain.gain.exponentialRampToValueAtTime(0.3, start + 0.04);
+    gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.8);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(start);
+    osc.stop(start + 0.85);
+
+    const cleanup = setTimeout(() => {
+      ctx.close().catch(() => {});
+    }, 900);
+
+    if (ctx.state === 'suspended') {
+      ctx.resume().catch(() => {});
+    }
+
+    return () => {
+      clearTimeout(cleanup);
+      try {
+        osc.stop();
+      } catch (_) {}
+      ctx.close().catch(() => {});
+    };
+  }, []);
 
   return (
     <div className="screen splash">

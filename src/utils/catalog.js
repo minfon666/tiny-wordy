@@ -1,3 +1,13 @@
+const MISSING_ICON_SLUGS = new Set([
+  "goose",
+  "kangaroo",
+  "koala",
+  "panda",
+  "turkey",
+  "turtle",
+  "rocket",
+]);
+
 export function loadCatalog() {
   const letters = Array.from({ length: 26 }, (_, index) => {
     const upper = String.fromCharCode(65 + index);
@@ -15,7 +25,7 @@ export function loadCatalog() {
     };
   });
 
-  return [
+  const catalog = [
     {
       key: "colors",
       label: "Colors",
@@ -34,7 +44,6 @@ export function loadCatalog() {
         { slug: "silver", label: "Silver" },
         { slug: "gold", label: "Gold" },
         { slug: "turquoise", label: "Turquoise" },
-        { slug: "lime", label: "Lime" },
         { slug: "magenta", label: "Magenta" },
         { slug: "cyan", label: "Cyan" },
         { slug: "indigo", label: "Indigo" },
@@ -110,16 +119,11 @@ export function loadCatalog() {
         { slug: "ambulance", label: "Ambulance" },
         { slug: "bicycle", label: "Bicycle" },
         { slug: "boat", label: "Boat" },
-        { slug: "bulldozer", label: "Bulldozer" },
         { slug: "bus", label: "Bus" },
         { slug: "car", label: "Car" },
         { slug: "crane", label: "Crane" },
-        { slug: "excavator", label: "Excavator" },
         { slug: "fire-truck", label: "Fire Truck" },
-        { slug: "forklift", label: "Forklift" },
         { slug: "helicopter", label: "Helicopter" },
-        { slug: "jet-ski", label: "Jet Ski" },
-        { slug: "monster-truck", label: "Monster Truck" },
         { slug: "motorcycle", label: "Motorcycle" },
         { slug: "plane", label: "Plane" },
         { slug: "police-car", label: "Police Car" },
@@ -128,9 +132,6 @@ export function loadCatalog() {
         { slug: "scooter", label: "Scooter" },
         { slug: "semi-truck", label: "Semi Truck" },
         { slug: "ship", label: "Ship" },
-        { slug: "snowmobile", label: "Snowmobile" },
-        { slug: "submarine", label: "Submarine" },
-        { slug: "tank", label: "Tank" },
         { slug: "taxi", label: "Taxi" },
         { slug: "tractor", label: "Tractor" },
         { slug: "train", label: "Train" },
@@ -146,9 +147,7 @@ export function loadCatalog() {
         { slug: "apple", label: "Apple" },
         { slug: "avocado", label: "Avocado" },
         { slug: "banana", label: "Banana" },
-        { slug: "beet", label: "Beet" },
         { slug: "broccoli", label: "Broccoli" },
-        { slug: "cabbage", label: "Cabbage" },
         { slug: "carrot", label: "Carrot" },
         { slug: "cherry", label: "Cherry" },
         { slug: "corn", label: "Corn" },
@@ -157,7 +156,6 @@ export function loadCatalog() {
         { slug: "kiwi", label: "Kiwi" },
         { slug: "lemon", label: "Lemon" },
         { slug: "lettuce", label: "Lettuce" },
-        { slug: "lime", label: "Lime" },
         { slug: "mango", label: "Mango" },
         { slug: "onion", label: "Onion" },
         { slug: "orange", label: "Orange" },
@@ -166,13 +164,9 @@ export function loadCatalog() {
         { slug: "pepper", label: "Pepper" },
         { slug: "pineapple", label: "Pineapple" },
         { slug: "potato", label: "Potato" },
-        { slug: "radish", label: "Radish" },
-        { slug: "spinach", label: "Spinach" },
-        { slug: "squash", label: "Squash" },
         { slug: "strawberry", label: "Strawberry" },
         { slug: "tomato", label: "Tomato" },
         { slug: "watermelon", label: "Watermelon" },
-        { slug: "zucchini", label: "Zucchini" },
       ],
     },
     {
@@ -189,12 +183,10 @@ export function loadCatalog() {
         { slug: "cheese", label: "Cheese" },
         { slug: "chocolate", label: "Chocolate" },
         { slug: "cookie", label: "Cookie" },
-        { slug: "cracker", label: "Cracker" },
         { slug: "donut", label: "Donut" },
         { slug: "egg", label: "Egg" },
         { slug: "honey", label: "Honey" },
         { slug: "ice-cream", label: "Ice Cream" },
-        { slug: "jam", label: "Jam" },
         { slug: "milk", label: "Milk" },
         { slug: "muffin", label: "Muffin" },
         { slug: "noodles", label: "Noodles" },
@@ -208,7 +200,6 @@ export function loadCatalog() {
         { slug: "sandwich", label: "Sandwich" },
         { slug: "soup", label: "Soup" },
         { slug: "waffle", label: "Waffle" },
-        { slug: "yogurt", label: "Yogurt" },
       ],
     },
     {
@@ -226,16 +217,8 @@ export function loadCatalog() {
         { slug: "driver", label: "Driver" },
         { slug: "engineer", label: "Engineer" },
         { slug: "scientist", label: "Scientist" },
-        { slug: "lawyer", label: "Lawyer" },
         { slug: "judge", label: "Judge" },
-        { slug: "dentist", label: "Dentist" },
-        { slug: "veterinarian", label: "Veterinarian" },
-        { slug: "mechanic", label: "Mechanic" },
-        { slug: "electrician", label: "Electrician" },
         { slug: "plumber", label: "Plumber" },
-        { slug: "carpenter", label: "Carpenter" },
-        { slug: "architect", label: "Architect" },
-        { slug: "designer", label: "Designer" },
         { slug: "photographer", label: "Photographer" },
         { slug: "musician", label: "Musician" },
         { slug: "singer", label: "Singer" },
@@ -243,18 +226,19 @@ export function loadCatalog() {
         { slug: "actor", label: "Actor" },
         { slug: "writer", label: "Writer" },
         { slug: "journalist", label: "Journalist" },
-        { slug: "reporter", label: "Reporter" },
         { slug: "librarian", label: "Librarian" },
         { slug: "lifeguard", label: "Lifeguard" },
         { slug: "mailman", label: "Mail Carrier" },
-        { slug: "delivery-person", label: "Delivery Person" },
-        { slug: "cashier", label: "Cashier" },
-        { slug: "waiter", label: "Waiter" },
-        { slug: "barber", label: "Barber" },
         { slug: "hairdresser", label: "Hairdresser" },
-        { slug: "cleaner", label: "Cleaner" },
         { slug: "security-guard", label: "Security Guard" }
       ],
     },
   ];
+
+  return catalog.map((category) => ({
+    ...category,
+    items: category.items.filter((item) => !MISSING_ICON_SLUGS.has(item.slug)),
+  }));
 }
+
+
